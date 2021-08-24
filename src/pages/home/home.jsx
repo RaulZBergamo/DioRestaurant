@@ -35,23 +35,13 @@ const Home = () => {
         }
     }
 
-    function handleOpenModal(placeId) {
-        setPlaceId(placeId)
-        setModalOpened(true);
-    }
-
     function openModal(placeId) {
         setPlaceId(placeId)
         setModalOpened(true)
+    }
 
-        console.log(isOpenNow)
-        console.log(restaurantSelected?.opening_hours)
+    function openTime() {
 
-        if(isOpenNow) {
-            console.log("Ta aberto")
-        } else if (isOpenNow == false) {
-            console.log("Ta fechado")
-        }
     }
 
     return(
@@ -101,7 +91,7 @@ const Home = () => {
                 <ModalTitle>{restaurantSelected?.name}</ModalTitle>
                 <ModalDescription>{restaurantSelected?.formatted_phone_number}</ModalDescription>
                 <ModalDescription>{restaurantSelected?.formatted_address}</ModalDescription>
-                <ModalOpenNow>{isOpenNow? 'Aberto agora' : 'Fechado no momento'}</ModalOpenNow>
+                <ModalOpenNow>{isOpenNow? "Aberto agora" : "Fechado no momento"}</ModalOpenNow>
             </Modal>
         </Wrapper>
     );
