@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import logoo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png'
 
-import { Container, Search, Logo, Wrapper, CarrouselTitle, Carousel } from './styles';
+import { Container, Search, Logo, Wrapper, CarrouselTitle, Carousel, ModalTitle, ModalDescription, ModalOpenNow} from './styles';
 
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
@@ -14,8 +14,10 @@ const Home = () => {
     const [inputValue, setInputValue] = useState('');
     const [query, setQuery] = useState(null);
     const [placeId, setPlaceId] = useState(null);
-    const [modalOpened, setModalOpened] = useState(true);
+    const [modalOpened, setModalOpened] = useState(false);
     const { restaurants, restaurantSelected } = useSelector((state) => state.restaurants)
+
+    const isOpenNow = restaurantSelected?.opening_hours.open_now;
 
     const settings = {
         dots: false,
@@ -36,6 +38,20 @@ const Home = () => {
     function handleOpenModal(placeId) {
         setPlaceId(placeId)
         setModalOpened(true);
+    }
+
+    function openModal(placeId) {
+        setPlaceId(placeId)
+        setModalOpened(true)
+
+        console.log(isOpenNow)
+        console.log(restaurantSelected?.opening_hours)
+
+        if(isOpenNow) {
+            console.log("Ta aberto")
+        } else if (isOpenNow == false) {
+            console.log("Ta fechado")
+        }
     }
 
     return(
@@ -73,7 +89,7 @@ const Home = () => {
                 {restaurants.map((restaurant) => (
                     <RestaurantCard 
                         restaurant={restaurant}
-                        onClick={() => setPlaceId(restaurant.placeId)}
+                        onClick={() => openModal(restaurant.place_id)}
                     />
                 ))}
             </Container>
@@ -82,9 +98,10 @@ const Home = () => {
                 open={modalOpened}
                 onClose={() => setModalOpened(!modalOpened)}
             >
-                <p>{restaurantSelected?.name}</p>
-                <p>{restaurantSelected?.formatted_phone_number}</p>
-                <p>{restaurantSelected?.formatted_adress}</p>
+                <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+                <ModalDescription>{restaurantSelected?.formatted_phone_number}</ModalDescription>
+                <ModalDescription>{restaurantSelected?.formatted_address}</ModalDescription>
+                <ModalOpenNow>{isOpenNow? 'Aberto agora' : 'Fechado no momento'}</ModalOpenNow>
             </Modal>
         </Wrapper>
     );

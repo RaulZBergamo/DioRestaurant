@@ -3,7 +3,8 @@ const theme = {
         primary: '#6200ee',
         background: '#00000014',
         text: '#000000b3',
-        sucess: '#135e01'
+        sucess: '#135e01',
+        fail: '#ff0255'
     },
     fonts: {
         regular: 'Roboto, sans-serif'

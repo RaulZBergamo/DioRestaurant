@@ -47,3 +47,26 @@ export const CarrouselTitle = styled.h1 `
     margin: 16px 0;
 `;
 
+export const ModalTitle = styled.h2 `
+    font-family: ${(props) => props.theme.fonts.regular};
+    color: ${(props) => props.theme.colors.text};
+    font-weight: 700;
+    letter-spacing: .6px;
+    margin: 16px 0;
+`;
+
+export const ModalDescription = styled.p `
+    font-family: ${(props => props.theme.fonts.regular)};
+    color: ${(props) => props.theme.colors.text};
+    font-weight: 500;
+    letter-spacing: .6px;
+    margin: 8px 0;
+`;
+
+export const ModalOpenNow = styled.span `
+    font-family: ${(props) => props.theme.fonts.regular};
+    color: ${(props) => props.theme.colors.text};
+    font-weight: 700;
+    letter-spacing: .6px;
+    margin: 8px 0;
+`;
